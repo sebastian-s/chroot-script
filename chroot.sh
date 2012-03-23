@@ -27,10 +27,14 @@
 
 
 # Überprüfen ob /mnt/gentoo existiert, wenn nicht erzeugen
+echo "Überprüfen ob '/mnt/gentoo' existiert..."
 if [-d /mnt/gentoo ]
 then
-
-
+    echo "Ordner '/mnt/gentoo' existiert und wird verwendet..."
+else
+    echo "Ordner '/mnt/gentoo' wird erstellt und verwendet..."
+    md /mnt/gentoo
+fi
 
 # mounten der Laufwerke
 echo "Laufwerke einhängen..."
@@ -55,7 +59,7 @@ echo "chroot ausführen..."
 if [ -e /mnt/gentoo/bin/zsh ]
     then
         echo "ZSH gefunden und wird verwendet..."
-        chroot /mnt/gentoo /bin/bash &&
+        chroot /mnt/gentoo /bin/zsh &&
     else
         echo "BASH wird verwendet..."
         chroot /mnt/gentoo /bin/bash &&
@@ -70,4 +74,9 @@ umount -l /mnt/gentoo/dev &&
 umount -l /mnt/gentoo/usr/portage &&
 umount -l /mnt/gentoo/boot &&
 umount -l /mnt/gentoo &&
+echo "...Fertig"
+
+# entfernen von /mnt/gentoo
+echo "Ordner '/mnt/gentoo' entfernen..."
+rm /mnt/gentoo
 echo "...Fertig"
