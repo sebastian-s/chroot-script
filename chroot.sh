@@ -57,12 +57,12 @@ echo "...Fertig"
 # chroot ausführen (bevorzugt mit ZSH, sonst mit BASH)
 echo "chroot ausführen..."
 if [ -e /mnt/gentoo/bin/zsh ]
-    then
-        echo "ZSH gefunden und wird verwendet..."
-        chroot /mnt/gentoo /bin/zsh &&
-    else
-        echo "BASH wird verwendet..."
-        chroot /mnt/gentoo /bin/bash &&
+then
+    echo "ZSH gefunden und wird verwendet..."
+    chroot /mnt/gentoo /bin/zsh &&
+else
+    echo "BASH wird verwendet..."
+    chroot /mnt/gentoo /bin/bash &&
 fi
 echo "...Fertig"
 
@@ -78,5 +78,5 @@ echo "...Fertig"
 
 # entfernen von /mnt/gentoo
 echo "Ordner '/mnt/gentoo' entfernen..."
-rm /mnt/gentoo
+rd /mnt/gentoo
 echo "...Fertig"
